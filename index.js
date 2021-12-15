@@ -2,17 +2,36 @@
 const canvas = document.querySelector(".canvas")
 const ctx = canvas.getContext("2d")
 
+// Classes
+
+class Player {
+    constructor(argW, argH, argColor, argX, argY, argHealth, argStrength) {
+      this.w = argW;
+      this.h = argH;
+      this.color = argColor;
+      this.x = argX;
+      this.y = argY;
+      this.health = argHealth;
+      this.strength = argStrength
+    }
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x,this.y,this.w, this.h)
+   }
+}
+
+    const wizard1 = new Player (30, 30, 'red', 0, 110, 10, 3);
 
 
 
 
+    
 
 
-
-
-
-
-
+const interval = setInterval(() => {
+    ctx.clearRect(0,0,canvas.width, canvas.height)
+    wizard1.draw();
+}, 20)
 
 
 document.addEventListener('keydown', (e) => {
@@ -31,3 +50,5 @@ document.addEventListener('keydown', (e) => {
         break;
     }
   });
+
+
