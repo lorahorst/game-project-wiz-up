@@ -22,15 +22,28 @@ class Player {
 
     const wizard1 = new Player (30, 30, 'red', 0, 110, 10, 3);
 
+    class Obstacle {
+        constructor(argW, argH, argColor, argX, argY) {
+            this.w = argW;
+            this.h = argH;
+            this.color = argColor;
+            this.x = argX;
+            this.y = argY;
+        }
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x,this.y,this.w, this.h)
+       }
+    }
 
+    const wall = new Obstacle (30, 30, 'grey', 0, 0);
 
-
-    
 
 
 const interval = setInterval(() => {
     ctx.clearRect(0,0,canvas.width, canvas.height)
     wizard1.draw();
+    wall.draw();
 }, 20)
 
 
