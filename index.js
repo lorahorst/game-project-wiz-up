@@ -33,6 +33,7 @@ class Player {
 }
 
     const wizard1 = new Player (50, 50, 'green', 250, 400, 10, 3);
+    const monster1 = new Player (50, 50, 'red', 50, 50, 5, 2);
 
     class Obstacle {
         constructor(argW, argH, argColor, argX, argY) {
@@ -114,29 +115,29 @@ new Obstacle (50, 50, 'grey', 100, 100),
 new Obstacle (50, 50, 'grey', 100, 150),
        ];
     
-/*    class Opponent {
-        constructor(argW, argH, argColor, argX, argY) {
-            this.w = argW;
-            this.h = argH;
-            this.color = argColor;
-            this.x = argX;
-            this.y = argY;
-            this.health = argHealth;
-            this.strength = argStrength
-        }
+       class Item {
+            constructor(argW, argH, argColor, argX, argY, argEffect) {
+                this.w = argW;
+                this.h = argH;
+                this.color = argColor;
+                this.x = argX;
+                this.y = argY;
+                this.effect = argEffect
+            }
         draw() {
             ctx.fillStyle = this.color;
             ctx.fillRect(this.x,this.y,this.w, this.h)
+           }
        }
-    }
 
 
-   const monster1 = new Opponent (50, 50, 'red', 350, 350, 5, 2);
-*/
+
+// Main game function
 
 const interval = setInterval(() => {
     ctx.clearRect(0,0,canvas.width, canvas.height)
     wizard1.draw();
+    monster1.draw();
     walls.forEach((wall) => {
         wall.draw();
       });
