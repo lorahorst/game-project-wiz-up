@@ -27,7 +27,7 @@ class Player {
 }
 }
 
-    const wizard1 = new Player (50, 50, 'green', 200, 250, 10, 3);
+    const wizard1 = new Player (50, 50, 'green', 250, 400, 10, 3);
 
     class Obstacle {
         constructor(argW, argH, argColor, argX, argY) {
@@ -83,7 +83,30 @@ class Player {
         new Obstacle (50, 50, 'grey', 450, 400),
         new Obstacle (50, 50, 'grey', 450, 450),
 //Interior Walls
-        new Obstacle (50, 50, 'grey', 450, 450),
+new Obstacle (50, 50, 'grey', 50, 300),
+new Obstacle (50, 50, 'grey', 50, 350),
+new Obstacle (50, 50, 'grey', 50, 400),
+new Obstacle (50, 50, 'grey', 50, 450),
+new Obstacle (50, 50, 'grey', 400, 400),
+new Obstacle (50, 50, 'grey', 400, 200),
+new Obstacle (50, 50, 'grey', 400, 100),
+new Obstacle (50, 50, 'grey', 400, 50),
+new Obstacle (50, 50, 'grey', 350, 50),
+new Obstacle (50, 50, 'grey', 250, 50),
+new Obstacle (50, 50, 'grey', 200, 250),
+new Obstacle (50, 50, 'grey', 200, 200),
+new Obstacle (50, 50, 'grey', 200, 300),
+new Obstacle (50, 50, 'grey', 200, 150),
+new Obstacle (50, 50, 'grey', 200, 350),
+new Obstacle (50, 50, 'grey', 150, 350),
+new Obstacle (50, 50, 'grey', 150, 250),
+new Obstacle (50, 50, 'grey', 300, 350),
+new Obstacle (50, 50, 'grey', 300, 300),
+new Obstacle (50, 50, 'grey', 350, 300),
+new Obstacle (50, 50, 'grey', 300, 200),
+new Obstacle (50, 50, 'grey', 300, 150),
+new Obstacle (50, 50, 'grey', 100, 100),
+new Obstacle (50, 50, 'grey', 100, 150),
        ];
     
 /*    class Opponent {
