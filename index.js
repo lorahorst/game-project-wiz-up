@@ -32,8 +32,8 @@ class Player {
     }
 }
 
-    const wizard1 = new Player (50, 50, 'green', 250, 400, 10, 3);
-    const monster1 = new Player (50, 50, 'red', 50, 50, 5, 2);
+    const wizard1 = new Player (25, 25, 'green', 260, 410, 10, 3);
+    const monster1 = new Player (25, 25, 'red', 55, 55, 5, 2);
 
     class Obstacle {
         constructor(argW, argH, argColor, argX, argY) {
@@ -130,7 +130,7 @@ new Obstacle (50, 50, 'grey', 100, 150),
            }
        }
 
-       const potion = new Item (25, 25, 'blue', 400, 150,)
+       const potion = new Item (25, 25, 'blue', 410, 165,)
 
 // Main game function
 

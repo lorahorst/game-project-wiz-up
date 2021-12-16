@@ -1,1 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+.canvas {
+    position: absolute;
+}
+
+.wizardname {
+    z-index: 1;
+    position: absolute;
+    top: 250px;
+    left: 600px;
+    color:black
+}
