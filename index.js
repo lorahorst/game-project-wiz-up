@@ -13,18 +13,23 @@ class Player {
       this.y = argY;
       this.health = argHealth;
       this.strength = argStrength
-      this.speedX = 0;
-      this.speedY = 0;
     }
-    
     draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x,this.y,this.w, this.h)
    }
-   newPos() {
-    this.x += this.speedX;
-    this.y += this.speedY;
-}
+   moveUp () {
+       this.y = this.y -= 5;
+   }
+   moveDown () {
+       this.y = this.y += 5;
+   }
+   moveLeft () {
+       this.x = this.x -= 5;
+    }
+    moveRight () {
+        this.x = this.x += 5;
+    }
 }
 
     const wizard1 = new Player (50, 50, 'green', 250, 400, 10, 3);
@@ -131,26 +136,25 @@ new Obstacle (50, 50, 'grey', 100, 150),
 
 const interval = setInterval(() => {
     ctx.clearRect(0,0,canvas.width, canvas.height)
-    wizard1.newPos();
     wizard1.draw();
     walls.forEach((wall) => {
         wall.draw();
       });
-}, 20)
+}, 5)
 
 document.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
       case 87: // w
-        wizard1.speedY -= 1;
+        wizard1.moveUp();
         break;
       case 83: // s
-        wizard1.speedY += 1;
+        wizard1.moveDown();
         break;
       case 65: // a
-        wizard1.speedX -= 1;
+        wizard1.moveLeft();
         break;
       case 68: // d
-        wizard1.speedX += 1;
+        wizard1.moveRight();
         break;
     }
   });
