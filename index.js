@@ -13,11 +13,18 @@ class Player {
       this.y = argY;
       this.health = argHealth;
       this.strength = argStrength
+      this.speedX = 0;
+      this.speedY = 0;
     }
+    
     draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x,this.y,this.w, this.h)
    }
+   newPos() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+}
 }
 
     const wizard1 = new Player (50, 50, 'green', 200, 250, 10, 3);
@@ -37,6 +44,7 @@ class Player {
     }
 
     const walls = [
+//Exterior Walls
         new Obstacle (50, 50, 'grey', 0, 0),
         new Obstacle (50, 50, 'grey', 50, 0),
         new Obstacle (50, 50, 'grey', 100, 0),
@@ -74,6 +82,8 @@ class Player {
         new Obstacle (50, 50, 'grey', 450, 350),
         new Obstacle (50, 50, 'grey', 450, 400),
         new Obstacle (50, 50, 'grey', 450, 450),
+//Interior Walls
+        new Obstacle (50, 50, 'grey', 450, 450),
        ];
     
 /*    class Opponent {
@@ -98,6 +108,7 @@ class Player {
 
 const interval = setInterval(() => {
     ctx.clearRect(0,0,canvas.width, canvas.height)
+    wizard1.newPos();
     wizard1.draw();
     walls.forEach((wall) => {
         wall.draw();
@@ -107,16 +118,16 @@ const interval = setInterval(() => {
 document.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
       case 87: // w
-        wizard1.Y -= 1;
+        wizard1.speedY -= 1;
         break;
       case 83: // s
-        wizard1.Y += 1;
+        wizard1.speedY += 1;
         break;
       case 65: // a
-        wizard1.X -= 1;
+        wizard1.speedX -= 1;
         break;
       case 68: // d
-        wizard1.X += 1;
+        wizard1.speedX += 1;
         break;
     }
   });
