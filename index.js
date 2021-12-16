@@ -130,7 +130,7 @@ new Obstacle (50, 50, 'grey', 100, 150),
            }
        }
 
-
+       const potion = new Item (25, 25, 'blue', 400, 150,)
 
 // Main game function
 
@@ -138,6 +138,7 @@ const interval = setInterval(() => {
     ctx.clearRect(0,0,canvas.width, canvas.height)
     wizard1.draw();
     monster1.draw();
+    potion.draw();
     walls.forEach((wall) => {
         wall.draw();
       });
