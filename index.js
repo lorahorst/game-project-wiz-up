@@ -4,6 +4,21 @@ const ctx = canvas.getContext("2d")
 
 // Classes
 
+class Obstacle {
+    constructor(argW, argH, argColor, argX, argY) {
+        this.w = argW;
+        this.h = argH;
+        this.color = argColor;
+        this.x = argX;
+        this.y = argY;
+    }
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x,this.y,this.w, this.h)
+   }
+}
+
+
 class Player {
     constructor(argW, argH, argColor, argX, argY, argHealth, argStrength) {
       this.w = argW;
@@ -18,6 +33,30 @@ class Player {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x,this.y,this.w, this.h)
    }
+   checkcollision(object) {
+    return (
+      this.x < object.x + object.w &&
+      this.x + this.w > object.x &&
+      this.y < object.y + object.h &&
+      this.y + this.h > object.y
+    );
+  }
+  checkfight(object) {
+    return (
+      this.x < object.x + object.w &&
+      this.x + this.w > object.x &&
+      this.y < object.y + object.h &&
+      this.y + this.h > object.y
+    );
+  }
+  checkitem(object) {
+    return (
+      this.x < object.x + object.w &&
+      this.x + this.w > object.x &&
+      this.y < object.y + object.h &&
+      this.y + this.h > object.y
+    );
+  }
    moveUp () {
        this.y = this.y -= 5;
    }
@@ -35,19 +74,7 @@ class Player {
     const wizard1 = new Player (25, 25, 'green', 260, 410, 10, 3);
     const monster1 = new Player (25, 25, 'red', 55, 55, 5, 2);
 
-    class Obstacle {
-        constructor(argW, argH, argColor, argX, argY) {
-            this.w = argW;
-            this.h = argH;
-            this.color = argColor;
-            this.x = argX;
-            this.y = argY;
-        }
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.fillRect(this.x,this.y,this.w, this.h)
-       }
-    }
+
 
     const walls = [
 //Exterior Walls
