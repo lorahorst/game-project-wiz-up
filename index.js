@@ -14,9 +14,6 @@ const monImage = new Image();
 monImage.src = "./images/bat.png"
 
 
-
-
-
 // Classes
 
 class Obstacle {
@@ -35,14 +32,15 @@ class Obstacle {
 
 
 class Player {
-    constructor(argW, argH, argColor, argX, argY, argHealth, argStrength) {
+    constructor(argW, argH, argColor, argX, argY, argHealth, argStrength, argID) {
       this.w = argW;
       this.h = argH;
       this.color = argColor;
       this.x = argX;
       this.y = argY;
       this.health = argHealth;
-      this.strength = argStrength
+      this.strength = argStrength;
+      this.id = argID
     }
     draw() {
         ctx.fillStyle = this.color;
@@ -86,6 +84,13 @@ class Player {
             })
          }
         })
+        monsters.forEach((monster) => {
+            if (this.checkfight(monster)) {     
+              monsters = monsters.filter((val) => {
+                   return val.id !== monster.id
+               })
+            }
+           })
    }
 
    moveDown () {
@@ -99,6 +104,13 @@ class Player {
         if (this.checkitem(potion)) {     
           potions = potions.filter((val) => {
                return val.id !== potion.id
+           })
+        }
+       })
+    monsters.forEach((monster) => {
+        if (this.checkfight(monster)) {     
+          monsters = monsters.filter((val) => {
+               return val.id !== monster.id
            })
         }
        })
@@ -118,6 +130,13 @@ class Player {
            })
         }
        })
+       monsters.forEach((monster) => {
+        if (this.checkfight(monster)) {     
+          monsters = monsters.filter((val) => {
+               return val.id !== monster.id
+           })
+        }
+       })
     }
 
     moveRight () {
@@ -134,13 +153,20 @@ class Player {
                })
             }
            })
+        monsters.forEach((monster) => {
+            if (this.checkfight(monster)) {     
+              monsters = monsters.filter((val) => {
+                   return val.id !== monster.id
+               })
+            }
+           })
     }
 }
 
     const wizard1 = new Player (25, 25, 'green', 260, 410, 10, 3);
     let monsters = [
-        new Player (25, 25, 'red', 55, 55, 5, 2),
-        new Player (25, 25, 'red', 230, 410, 5, 2)
+        new Player (25, 25, 'red', 55, 55, 5, 2, '1'),
+        new Player (25, 25, 'red', 230, 410, 5, 2, '2')
     ]
 
 
