@@ -11,28 +11,35 @@ const itemImage = new Image();
 itemImage.src = "./images/potion.png";
 
 const monImage = new Image();
-monImage.src = "./images/bat.png"
+monImage.src = "./images/dragon.png"
+
+const wallImage = new Image();
+wallImage.src = "./images/wall.jpg"
 
 
 // Classes
 
 class Obstacle {
-    constructor(argW, argH, argColor, argX, argY) {
+    constructor(argW, argH, argColor, argX, argY, argImg) {
         this.w = argW;
         this.h = argH;
         this.color = argColor;
         this.x = argX;
         this.y = argY;
+        this.img = argImg
     }
     draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x,this.y,this.w, this.h)
    }
+   paint () {
+    ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
+}
 }
 
 
 class Player {
-    constructor(argW, argH, argColor, argX, argY, argHealth, argStrength, argID) {
+    constructor(argW, argH, argColor, argX, argY, argHealth, argStrength, argID, argImg) {
       this.w = argW;
       this.h = argH;
       this.color = argColor;
@@ -40,12 +47,16 @@ class Player {
       this.y = argY;
       this.health = argHealth;
       this.strength = argStrength;
-      this.id = argID
+      this.id = argID;
+      this.img = argImg
     }
     draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x,this.y,this.w, this.h)
        }   
+    paint () {
+        ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
+    }
    checkcollision(wall) {
     return (
       this.x < wall.x + wall.w &&
@@ -175,101 +186,105 @@ class Player {
 }
 
     class Item {
-        constructor(argW, argH, argColor, argX, argY, argID, argEffect) {
+        constructor(argW, argH, argColor, argX, argY, argID, argEffect, argImg) {
             this.w = argW;
             this.h = argH;
             this.color = argColor;
             this.x = argX;
             this.y = argY;
             this.id = argID;
-            this.effect = argEffect
+            this.effect = argEffect;
+            this.img = argImg
         }
     draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x,this.y,this.w, this.h)
        }
+    paint () {
+        ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
+        }
    }
 
 
 
 //Variables
 
-    const wizard1 = new Player (25, 25, 'green', 260, 410, 10, 3);
+    const wizard1 = new Player (35, 35, 'green', 260, 410, 10, 3, 0, playerImage);
 
     let monsters = [
-        new Player (25, 25, 'red', 55, 55, 5, 2, '1',),
-        new Player (25, 25, 'red', 230, 410, 5, 2, '2',)
+        new Player (30, 30, 'red', 55, 55, 5, 2, '1', monImage),
+        new Player (30, 30, 'red', 180, 410, 5, 2, '2', monImage)
         ]
 
     const walls = [
 //Exterior Walls
-        new Obstacle (50, 50, 'grey', 0, 0),
-        new Obstacle (50, 50, 'grey', 50, 0),
-        new Obstacle (50, 50, 'grey', 100, 0),
-        new Obstacle (50, 50, 'grey', 150, 0),
-        new Obstacle (50, 50, 'grey', 200, 0),
-        new Obstacle (50, 50, 'grey', 250, 0),
-        new Obstacle (50, 50, 'grey', 300, 0),
-        new Obstacle (50, 50, 'grey', 350, 0),
-        new Obstacle (50, 50, 'grey', 400, 0),
-        new Obstacle (50, 50, 'grey', 450, 0),
-        new Obstacle (50, 50, 'grey', 0, 50),
-        new Obstacle (50, 50, 'grey', 0, 100),
-        new Obstacle (50, 50, 'grey', 0, 150),
-        new Obstacle (50, 50, 'grey', 0, 200),
-        new Obstacle (50, 50, 'grey', 0, 250),
-        new Obstacle (50, 50, 'grey', 0, 300),
-        new Obstacle (50, 50, 'grey', 0, 350),
-        new Obstacle (50, 50, 'grey', 0, 400),
-        new Obstacle (50, 50, 'grey', 0, 450),
-        new Obstacle (50, 50, 'grey', 50, 450),
-        new Obstacle (50, 50, 'grey', 100, 450),
-        new Obstacle (50, 50, 'grey', 150, 450),
-        new Obstacle (50, 50, 'grey', 200, 450),
-        new Obstacle (50, 50, 'grey', 250, 450),
-        new Obstacle (50, 50, 'grey', 300, 450),
-        new Obstacle (50, 50, 'grey', 350, 450),
-        new Obstacle (50, 50, 'grey', 400, 450),
-        new Obstacle (50, 50, 'grey', 450, 450),
-        new Obstacle (50, 50, 'grey', 450, 50),
-        new Obstacle (50, 50, 'grey', 450, 100),
-        new Obstacle (50, 50, 'grey', 450, 150),
-        new Obstacle (50, 50, 'grey', 450, 200),
-        new Obstacle (50, 50, 'grey', 450, 250),
-        new Obstacle (50, 50, 'grey', 450, 300),
-        new Obstacle (50, 50, 'grey', 450, 350),
-        new Obstacle (50, 50, 'grey', 450, 400),
-        new Obstacle (50, 50, 'grey', 450, 450),
+        new Obstacle (50, 50, 'grey', 0, 0, wallImage),
+        new Obstacle (50, 50, 'grey', 50, 0, wallImage),
+        new Obstacle (50, 50, 'grey', 100, 0, wallImage),
+        new Obstacle (50, 50, 'grey', 150, 0, wallImage),
+        new Obstacle (50, 50, 'grey', 200, 0, wallImage),
+        new Obstacle (50, 50, 'grey', 250, 0, wallImage),
+        new Obstacle (50, 50, 'grey', 300, 0, wallImage),
+        new Obstacle (50, 50, 'grey', 350, 0, wallImage),
+        new Obstacle (50, 50, 'grey', 400, 0, wallImage),
+        new Obstacle (50, 50, 'grey', 450, 0, wallImage),
+        new Obstacle (50, 50, 'grey', 0, 50, wallImage),
+        new Obstacle (50, 50, 'grey', 0, 100, wallImage),
+        new Obstacle (50, 50, 'grey', 0, 150, wallImage),
+        new Obstacle (50, 50, 'grey', 0, 200, wallImage),
+        new Obstacle (50, 50, 'grey', 0, 250, wallImage),
+        new Obstacle (50, 50, 'grey', 0, 300, wallImage),
+        new Obstacle (50, 50, 'grey', 0, 350, wallImage),
+        new Obstacle (50, 50, 'grey', 0, 400, wallImage),
+        new Obstacle (50, 50, 'grey', 0, 450, wallImage),
+        new Obstacle (50, 50, 'grey', 50, 450, wallImage),
+        new Obstacle (50, 50, 'grey', 100, 450, wallImage),
+        new Obstacle (50, 50, 'grey', 150, 450, wallImage),
+        new Obstacle (50, 50, 'grey', 200, 450, wallImage),
+        new Obstacle (50, 50, 'grey', 250, 450, wallImage),
+        new Obstacle (50, 50, 'grey', 300, 450, wallImage),
+        new Obstacle (50, 50, 'grey', 350, 450, wallImage),
+        new Obstacle (50, 50, 'grey', 400, 450, wallImage),
+        new Obstacle (50, 50, 'grey', 450, 450, wallImage),
+        new Obstacle (50, 50, 'grey', 450, 50, wallImage),
+        new Obstacle (50, 50, 'grey', 450, 100, wallImage),
+        new Obstacle (50, 50, 'grey', 450, 150, wallImage),
+        new Obstacle (50, 50, 'grey', 450, 200, wallImage),
+        new Obstacle (50, 50, 'grey', 450, 250, wallImage),
+        new Obstacle (50, 50, 'grey', 450, 300, wallImage),
+        new Obstacle (50, 50, 'grey', 450, 350, wallImage),
+        new Obstacle (50, 50, 'grey', 450, 400, wallImage),
+        new Obstacle (50, 50, 'grey', 450, 450, wallImage),
 //Interior Walls
-new Obstacle (50, 50, 'grey', 50, 300),
-new Obstacle (50, 50, 'grey', 50, 350),
-new Obstacle (50, 50, 'grey', 50, 400),
-new Obstacle (50, 50, 'grey', 50, 450),
-new Obstacle (50, 50, 'grey', 400, 400),
-new Obstacle (50, 50, 'grey', 400, 200),
-new Obstacle (50, 50, 'grey', 400, 100),
-new Obstacle (50, 50, 'grey', 400, 50),
-new Obstacle (50, 50, 'grey', 350, 50),
-new Obstacle (50, 50, 'grey', 250, 50),
-new Obstacle (50, 50, 'grey', 200, 250),
-new Obstacle (50, 50, 'grey', 200, 200),
-new Obstacle (50, 50, 'grey', 200, 300),
-new Obstacle (50, 50, 'grey', 200, 150),
-new Obstacle (50, 50, 'grey', 200, 350),
-new Obstacle (50, 50, 'grey', 150, 350),
-new Obstacle (50, 50, 'grey', 150, 250),
-new Obstacle (50, 50, 'grey', 300, 350),
-new Obstacle (50, 50, 'grey', 300, 300),
-new Obstacle (50, 50, 'grey', 350, 300),
-new Obstacle (50, 50, 'grey', 300, 200),
-new Obstacle (50, 50, 'grey', 300, 150),
-new Obstacle (50, 50, 'grey', 100, 100),
-new Obstacle (50, 50, 'grey', 100, 150),
+new Obstacle (50, 50, 'grey', 50, 300, wallImage),
+new Obstacle (50, 50, 'grey', 50, 350, wallImage),
+new Obstacle (50, 50, 'grey', 50, 400, wallImage),
+new Obstacle (50, 50, 'grey', 50, 450, wallImage),
+new Obstacle (50, 50, 'grey', 400, 400, wallImage),
+new Obstacle (50, 50, 'grey', 400, 200, wallImage),
+new Obstacle (50, 50, 'grey', 400, 100, wallImage),
+new Obstacle (50, 50, 'grey', 400, 50, wallImage),
+new Obstacle (50, 50, 'grey', 350, 50, wallImage),
+new Obstacle (50, 50, 'grey', 250, 50, wallImage),
+new Obstacle (50, 50, 'grey', 200, 250, wallImage),
+new Obstacle (50, 50, 'grey', 200, 200, wallImage),
+new Obstacle (50, 50, 'grey', 200, 300, wallImage),
+new Obstacle (50, 50, 'grey', 200, 150, wallImage),
+new Obstacle (50, 50, 'grey', 200, 350, wallImage),
+new Obstacle (50, 50, 'grey', 150, 350, wallImage),
+new Obstacle (50, 50, 'grey', 150, 250, wallImage),
+new Obstacle (50, 50, 'grey', 300, 350, wallImage),
+new Obstacle (50, 50, 'grey', 300, 300, wallImage),
+new Obstacle (50, 50, 'grey', 350, 300, wallImage),
+new Obstacle (50, 50, 'grey', 300, 200, wallImage),
+new Obstacle (50, 50, 'grey', 300, 150, wallImage),
+new Obstacle (50, 50, 'grey', 100, 100, wallImage),
+new Obstacle (50, 50, 'grey', 100, 150, wallImage),
        ];
     
     let potions = [
-           new Item (25, 25, 'blue', 410, 165, '1', 2),
-           new Item (25, 25, 'blue', 410, 245, '2', 3)
+           new Item (25, 25, 'blue', 410, 165, '1', 2, itemImage),
+           new Item (25, 25, 'blue', 410, 260, '2', 3, itemImage)
         ]
 
 
@@ -278,16 +293,16 @@ new Obstacle (50, 50, 'grey', 100, 150),
 
 const interval = setInterval(() => {
     ctx.clearRect(0,0,canvas.width, canvas.height)
-    wizard1.draw();
+    wizard1.paint();
     console.log(`health: ${wizard1.health}, strength: ${wizard1.strength}`)
     monsters.forEach((monster) => {
-        monster.draw();
+        monster.paint();
     })
     potions.forEach((potion) => {
-        potion.draw();
+        potion.paint();
     })
     walls.forEach((wall) => {
-        wall.draw();
+        wall.paint();
       });
 }, 5)
 
