@@ -33,41 +33,69 @@ class Player {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x,this.y,this.w, this.h)
    }
-   checkcollision(object) {
+   checkcollision(wall) {
     return (
-      this.x < object.x + object.w &&
-      this.x + this.w > object.x &&
-      this.y < object.y + object.h &&
-      this.y + this.h > object.y
+      this.x < wall.x + wall.w &&
+      this.x + this.w > wall.x &&
+      this.y < wall.y + wall.h &&
+      this.y + this.h > wall.y
     );
   }
-  checkfight(object) {
+  checkfight(opponent) {
     return (
-      this.x < object.x + object.w &&
-      this.x + this.w > object.x &&
-      this.y < object.y + object.h &&
-      this.y + this.h > object.y
+      this.x < opponent.x + opponent.w &&
+      this.x + this.w > opponent.x &&
+      this.y < opponent.y + opponent.h &&
+      this.y + this.h > opponent.y
     );
   }
-  checkitem(object) {
+  checkitem(item) {
     return (
-      this.x < object.x + object.w &&
-      this.x + this.w > object.x &&
-      this.y < object.y + object.h &&
-      this.y + this.h > object.y
+      this.x < item.x + item.w &&
+      this.x + this.w > item.x &&
+      this.y < item.y + item.h &&
+      this.y + this.h > item.y
     );
   }
    moveUp () {
        this.y = this.y -= 5;
+       walls.forEach((wall) => {
+           if (this.checkcollision(wall)) {
+               this.y += 5;
+           }
+       })
+       oppoents.forEach((opponent) => {
+        if (this.checkfight(opponent)) {
+            this.health = this.health - opponent.strength;
+        }
+    })
    }
+
    moveDown () {
        this.y = this.y += 5;
+       walls.forEach((wall) => {
+        if (this.checkcollision(wall)) {
+            this.y -= 5;
+        }
+    })
    }
+
    moveLeft () {
        this.x = this.x -= 5;
+       walls.forEach((wall) => {
+        if (this.checkcollision(wall)) {
+            this.x += 5;
+        }
+    })
     }
+
     moveRight () {
         this.x = this.x += 5;
+        walls.forEach((wall) => {
+            if (this.checkcollision(wall)) {
+                this.x -= 5;
+            }
+        })
     }
 }
 
