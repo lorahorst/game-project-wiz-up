@@ -81,7 +81,8 @@ class Player {
            }
        })
         potions.forEach((potion) => {
-         if (this.checkitem(potion)) {     
+         if (this.checkitem(potion)) {
+             wizard1.health = wizard1.health + potion.effect   
            potions = potions.filter((val) => {
                 return val.id !== potion.id
             })
@@ -105,7 +106,8 @@ class Player {
         }
     })
     potions.forEach((potion) => {
-        if (this.checkitem(potion)) {     
+        if (this.checkitem(potion)) { 
+            wizard1.health = wizard1.health + potion.effect     
           potions = potions.filter((val) => {
                return val.id !== potion.id
            })
@@ -129,7 +131,8 @@ class Player {
         }
     })
     potions.forEach((potion) => {
-        if (this.checkitem(potion)) {     
+        if (this.checkitem(potion)) {  
+            wizard1.health = wizard1.health + potion.effect    
           potions = potions.filter((val) => {
                return val.id !== potion.id
            })
@@ -153,7 +156,8 @@ class Player {
             }
         })
         potions.forEach((potion) => {
-            if (this.checkitem(potion)) {     
+            if (this.checkitem(potion)) {   
+                wizard1.health = wizard1.health + potion.effect   
               potions = potions.filter((val) => {
                    return val.id !== potion.id
                })
@@ -171,13 +175,14 @@ class Player {
 }
 
     class Item {
-        constructor(argW, argH, argColor, argX, argY, argID) {
+        constructor(argW, argH, argColor, argX, argY, argID, argEffect) {
             this.w = argW;
             this.h = argH;
             this.color = argColor;
             this.x = argX;
             this.y = argY;
-            this.id = argID
+            this.id = argID;
+            this.effect = argEffect
         }
     draw() {
         ctx.fillStyle = this.color;
@@ -192,8 +197,8 @@ class Player {
     const wizard1 = new Player (25, 25, 'green', 260, 410, 10, 3);
 
     let monsters = [
-        new Player (25, 25, 'red', 55, 55, 5, 2, '1'),
-        new Player (25, 25, 'red', 230, 410, 5, 2, '2')
+        new Player (25, 25, 'red', 55, 55, 5, 2, '1',),
+        new Player (25, 25, 'red', 230, 410, 5, 2, '2',)
         ]
 
     const walls = [
@@ -263,8 +268,8 @@ new Obstacle (50, 50, 'grey', 100, 150),
        ];
     
     let potions = [
-           new Item (25, 25, 'blue', 410, 165, '1'),
-           new Item (25, 25, 'blue', 410, 245, '2')
+           new Item (25, 25, 'blue', 410, 165, '1', 2),
+           new Item (25, 25, 'blue', 410, 245, '2', 3)
         ]
 
 
@@ -274,6 +279,7 @@ new Obstacle (50, 50, 'grey', 100, 150),
 const interval = setInterval(() => {
     ctx.clearRect(0,0,canvas.width, canvas.height)
     wizard1.draw();
+    console.log(`health: ${wizard1.health}, strength: ${wizard1.strength}`)
     monsters.forEach((monster) => {
         monster.draw();
     })
