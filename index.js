@@ -70,6 +70,9 @@ class Player {
       this.y + this.h > item.y
     );
   }
+
+  //Movement
+
    moveUp () {
        this.y = this.y -= 5;
        walls.forEach((wall) => {
@@ -85,12 +88,13 @@ class Player {
          }
         })
         monsters.forEach((monster) => {
-            if (this.checkfight(monster)) {     
-              monsters = monsters.filter((val) => {
-                   return val.id !== monster.id
-               })
-            }
-           })
+            if (this.checkfight(monster)) {
+            wizard1.health = wizard1.health - monster.strength;
+            monsters = monsters.filter((val) => {
+                return val.id !== monster.id
+            })
+        }
+        })
    }
 
    moveDown () {
@@ -108,8 +112,9 @@ class Player {
         }
        })
     monsters.forEach((monster) => {
-        if (this.checkfight(monster)) {     
-          monsters = monsters.filter((val) => {
+        if (this.checkfight(monster)) {   
+        wizard1.health = wizard1.health - monster.strength;  
+        monsters = monsters.filter((val) => {
                return val.id !== monster.id
            })
         }
@@ -131,7 +136,8 @@ class Player {
         }
        })
        monsters.forEach((monster) => {
-        if (this.checkfight(monster)) {     
+        if (this.checkfight(monster)) {    
+        wizard1.health = wizard1.health - monster.strength; 
           monsters = monsters.filter((val) => {
                return val.id !== monster.id
            })
@@ -154,7 +160,8 @@ class Player {
             }
            })
         monsters.forEach((monster) => {
-            if (this.checkfight(monster)) {     
+            if (this.checkfight(monster)) {  
+            wizard1.health = wizard1.health - monster.strength;   
               monsters = monsters.filter((val) => {
                    return val.id !== monster.id
                })
@@ -163,13 +170,31 @@ class Player {
     }
 }
 
+    class Item {
+        constructor(argW, argH, argColor, argX, argY, argID) {
+            this.w = argW;
+            this.h = argH;
+            this.color = argColor;
+            this.x = argX;
+            this.y = argY;
+            this.id = argID
+        }
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x,this.y,this.w, this.h)
+       }
+   }
+
+
+
+//Variables
+
     const wizard1 = new Player (25, 25, 'green', 260, 410, 10, 3);
+
     let monsters = [
         new Player (25, 25, 'red', 55, 55, 5, 2, '1'),
         new Player (25, 25, 'red', 230, 410, 5, 2, '2')
-    ]
-
-
+        ]
 
     const walls = [
 //Exterior Walls
@@ -237,25 +262,12 @@ new Obstacle (50, 50, 'grey', 100, 100),
 new Obstacle (50, 50, 'grey', 100, 150),
        ];
     
-       class Item {
-            constructor(argW, argH, argColor, argX, argY, argID) {
-                this.w = argW;
-                this.h = argH;
-                this.color = argColor;
-                this.x = argX;
-                this.y = argY;
-                this.id = argID
-            }
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.fillRect(this.x,this.y,this.w, this.h)
-           }
-       }
-
-       let potions = [
+    let potions = [
            new Item (25, 25, 'blue', 410, 165, '1'),
            new Item (25, 25, 'blue', 410, 245, '2')
         ]
+
+
 
 // Main game function
 
