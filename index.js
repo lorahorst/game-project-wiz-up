@@ -2,6 +2,18 @@
 const canvas = document.querySelector(".canvas")
 const ctx = canvas.getContext("2d")
 
+//Images
+
+const playerImage = new Image();
+playerImage.src = "./images/player.png";
+
+const itemImage = new Image();
+itemImage.src = "./images/potion.png"
+
+
+
+
+
 // Classes
 
 class Obstacle {
@@ -23,7 +35,7 @@ class Player {
     constructor(argW, argH, argColor, argX, argY, argHealth, argStrength) {
       this.w = argW;
       this.h = argH;
-      this.color = argColor;
+      this.color = argColor
       this.x = argX;
       this.y = argY;
       this.health = argHealth;
@@ -32,7 +44,7 @@ class Player {
     draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x,this.y,this.w, this.h)
-   }
+       }   
    checkcollision(wall) {
     return (
       this.x < wall.x + wall.w &&
@@ -64,11 +76,13 @@ class Player {
                this.y += 5;
            }
        })
-       oppoents.forEach((opponent) => {
-        if (this.checkfight(opponent)) {
-            this.health = this.health - opponent.strength;
-        }
-    })
+        potions.forEach((potion) => {
+         if (this.checkitem(potion)) {     
+           potions = potions.filter((val) => {
+                return val.id !== potion.id
+            })
+         }
+        })
    }
 
    moveDown () {
@@ -78,6 +92,13 @@ class Player {
             this.y -= 5;
         }
     })
+    potions.forEach((potion) => {
+        if (this.checkitem(potion)) {     
+          potions = potions.filter((val) => {
+               return val.id !== potion.id
+           })
+        }
+       })
    }
 
    moveLeft () {
@@ -87,6 +108,13 @@ class Player {
             this.x += 5;
         }
     })
+    potions.forEach((potion) => {
+        if (this.checkitem(potion)) {     
+          potions = potions.filter((val) => {
+               return val.id !== potion.id
+           })
+        }
+       })
     }
 
     moveRight () {
@@ -96,6 +124,13 @@ class Player {
                 this.x -= 5;
             }
         })
+        potions.forEach((potion) => {
+            if (this.checkitem(potion)) {     
+              potions = potions.filter((val) => {
+                   return val.id !== potion.id
+               })
+            }
+           })
     }
 }
 
@@ -171,13 +206,13 @@ new Obstacle (50, 50, 'grey', 100, 150),
        ];
     
        class Item {
-            constructor(argW, argH, argColor, argX, argY, argEffect) {
+            constructor(argW, argH, argColor, argX, argY, argID) {
                 this.w = argW;
                 this.h = argH;
                 this.color = argColor;
                 this.x = argX;
                 this.y = argY;
-                this.effect = argEffect
+                this.id = argID
             }
         draw() {
             ctx.fillStyle = this.color;
@@ -185,7 +220,10 @@ new Obstacle (50, 50, 'grey', 100, 150),
            }
        }
 
-       const potion = new Item (25, 25, 'blue', 410, 165,)
+       let potions = [
+           new Item (25, 25, 'blue', 410, 165, '1'),
+           new Item (25, 25, 'blue', 410, 245, '2')
+        ]
 
 // Main game function
 
@@ -193,7 +231,9 @@ const interval = setInterval(() => {
     ctx.clearRect(0,0,canvas.width, canvas.height)
     wizard1.draw();
     monster1.draw();
-    potion.draw();
+    potions.forEach((potion) => {
+        potion.draw();
+    })
     walls.forEach((wall) => {
         wall.draw();
       });
