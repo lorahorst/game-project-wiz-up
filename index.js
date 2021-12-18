@@ -8,7 +8,10 @@ const playerImage = new Image();
 playerImage.src = "./images/player.png";
 
 const itemImage = new Image();
-itemImage.src = "./images/potion.png"
+itemImage.src = "./images/potion.png";
+
+const monImage = new Image();
+monImage.src = "./images/bat.png"
 
 
 
@@ -35,7 +38,7 @@ class Player {
     constructor(argW, argH, argColor, argX, argY, argHealth, argStrength) {
       this.w = argW;
       this.h = argH;
-      this.color = argColor
+      this.color = argColor;
       this.x = argX;
       this.y = argY;
       this.health = argHealth;
@@ -135,7 +138,10 @@ class Player {
 }
 
     const wizard1 = new Player (25, 25, 'green', 260, 410, 10, 3);
-    const monster1 = new Player (25, 25, 'red', 55, 55, 5, 2);
+    let monsters = [
+        new Player (25, 25, 'red', 55, 55, 5, 2),
+        new Player (25, 25, 'red', 230, 410, 5, 2)
+    ]
 
 
 
@@ -230,7 +236,9 @@ new Obstacle (50, 50, 'grey', 100, 150),
 const interval = setInterval(() => {
     ctx.clearRect(0,0,canvas.width, canvas.height)
     wizard1.draw();
-    monster1.draw();
+    monsters.forEach((monster) => {
+        monster.draw();
+    })
     potions.forEach((potion) => {
         potion.draw();
     })
