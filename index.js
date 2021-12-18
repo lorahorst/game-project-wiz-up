@@ -291,34 +291,44 @@ new Obstacle (50, 50, 'grey', 100, 150, wallImage),
 
 // Main game function
 
-const interval = setInterval(() => {
-    ctx.clearRect(0,0,canvas.width, canvas.height)
-    wizard1.paint();
-    console.log(`health: ${wizard1.health}, strength: ${wizard1.strength}`)
-    monsters.forEach((monster) => {
-        monster.paint();
-    })
-    potions.forEach((potion) => {
-        potion.paint();
-    })
-    walls.forEach((wall) => {
-        wall.paint();
-      });
-}, 5)
+window.onload = function () {
+    document.getElementById("start-button").onclick = function () {
+      document.getElementById("start-button").disabled = true;
+      startGame();
+    };
+  };
 
-document.addEventListener('keydown', (e) => {
-    switch (e.keyCode) {
-      case 87: // w
-        wizard1.moveUp();
-        break;
-      case 83: // s
-        wizard1.moveDown();
-        break;
-      case 65: // a
-        wizard1.moveLeft();
-        break;
-      case 68: // d
-        wizard1.moveRight();
-        break;
-    }
-  });
+
+function startGame() {
+    setInterval(() => {
+        ctx.clearRect(0,0,canvas.width, canvas.height)
+        wizard1.paint();
+        console.log(`health: ${wizard1.health}, strength: ${wizard1.strength}`)
+        monsters.forEach((monster) => {
+            monster.paint();
+        })
+        potions.forEach((potion) => {
+            potion.paint();
+        })
+        walls.forEach((wall) => {
+            wall.paint();
+          });
+    }, 10)
+    
+    document.addEventListener('keydown', (e) => {
+        switch (e.keyCode) {
+          case 87: // w
+            wizard1.moveUp();
+            break;
+          case 83: // s
+            wizard1.moveDown();
+            break;
+          case 65: // a
+            wizard1.moveLeft();
+            break;
+          case 68: // d
+            wizard1.moveRight();
+            break;
+        }
+      });
+} 
