@@ -272,6 +272,9 @@ new Obstacle (50, 50, 100, 150, wallImage),
            new Item (25, 25, 410, 260, '2', 3, itemImage)
       ];
 
+
+// Level functions
+
 function checkLevelWon() {
       if (monsters.length === 0) {
         youWon();
@@ -280,6 +283,16 @@ function checkLevelWon() {
 
 function youWon() {
     	  ctx.clearRect(0,0,canvas.width, canvas.height)
+}
+
+function checkLevelLose() {
+      if (wizard1.health === 0) {
+        youLost();
+      }
+}
+
+function youLost() {
+  ctx.clearRect(0,0,canvas.width, canvas.height)
 }
 
 // Main game function
@@ -307,6 +320,7 @@ function startGame() {
             wall.paint();
         });
         checkLevelWon();
+        checkLevelLose();
     }, 10)
 
 
