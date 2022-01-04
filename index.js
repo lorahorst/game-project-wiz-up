@@ -2,6 +2,8 @@
 const canvas = document.querySelector(".canvas")
 const ctx = canvas.getContext("2d")
 
+let restartBtn = document.querySelector('#restart')
+
 //Images
 
 const playerImage = new Image();
@@ -31,7 +33,6 @@ class Obstacle {
     ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
 }
 }
-
 
 class Player {
     constructor(argW, argH, argX, argY, argHealth, argStrength, argID, argImg) {
@@ -192,7 +193,7 @@ class Item {
 
 
 
-//Variables
+// Level 1 Variables
 
     const wizard1 = new Player (35, 35, 260, 410, 10, 3, 0, playerImage);
 
@@ -300,8 +301,11 @@ function youLost() {
 window.onload = function () {
     document.getElementById("start-button").onclick = function () {
       document.getElementById("start-button").disabled = true;
+      startGame()};
+    document.getElementById("start-button").onclick = function () {
+      document.getElementById("start-button").disabled = true;
       startGame();
-    };
+    }
   };
 
 
