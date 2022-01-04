@@ -193,55 +193,60 @@ class Item {
 }
 
 
-
 // Level 1 Variables
 
-    const wizard1 = new Player (35, 35, 260, 410, 10, 3, 0, playerImage);
+let wizard1
+let potions
+let monsters
+let walls
 
-    let monsters = [
-        new Player (30, 30, 55, 55, 5, 2, '1', mon2Image),
-        new Player (30, 30, 180, 410, 5, 10, '2', monImage)
-      ];
+function levelOnePopulation () {
+  wizard1 = new Player (35, 35, 260, 410, 10, 3, 0, playerImage);
 
-    const walls = [
+  monsters = [
+      new Player (30, 30, 55, 55, 5, 2, '1', mon2Image),
+      new Player (30, 30, 180, 410, 5, 10, '2', monImage)
+    ];
+
+  walls = [
 //Exterior Walls
-        new Obstacle (50, 50, 0, 0, wallImage),
-        new Obstacle (50, 50, 50, 0, wallImage),
-        new Obstacle (50, 50, 100, 0, wallImage),
-        new Obstacle (50, 50, 150, 0, wallImage),
-        new Obstacle (50, 50, 200, 0, wallImage),
-        new Obstacle (50, 50, 250, 0, wallImage),
-        new Obstacle (50, 50, 300, 0, wallImage),
-        new Obstacle (50, 50, 350, 0, wallImage),
-        new Obstacle (50, 50, 400, 0, wallImage),
-        new Obstacle (50, 50, 450, 0, wallImage),
-        new Obstacle (50, 50, 0, 50, wallImage),
-        new Obstacle (50, 50, 0, 100, wallImage),
-        new Obstacle (50, 50, 0, 150, wallImage),
-        new Obstacle (50, 50, 0, 200, wallImage),
-        new Obstacle (50, 50, 0, 250, wallImage),
-        new Obstacle (50, 50, 0, 300, wallImage),
-        new Obstacle (50, 50, 0, 350, wallImage),
-        new Obstacle (50, 50, 0, 400, wallImage),
-        new Obstacle (50, 50, 0, 450, wallImage),
-        new Obstacle (50, 50, 50, 450, wallImage),
-        new Obstacle (50, 50, 100, 450, wallImage),
-        new Obstacle (50, 50, 150, 450, wallImage),
-        new Obstacle (50, 50, 200, 450, wallImage),
-        new Obstacle (50, 50, 250, 450, wallImage),
-        new Obstacle (50, 50, 300, 450, wallImage),
-        new Obstacle (50, 50, 350, 450, wallImage),
-        new Obstacle (50, 50, 400, 450, wallImage),
-        new Obstacle (50, 50, 450, 450, wallImage),
-        new Obstacle (50, 50, 450, 50, wallImage),
-        new Obstacle (50, 50, 450, 100, wallImage),
-        new Obstacle (50, 50, 450, 150, wallImage),
-        new Obstacle (50, 50, 450, 200, wallImage),
-        new Obstacle (50, 50, 450, 250, wallImage),
-        new Obstacle (50, 50, 450, 300, wallImage),
-        new Obstacle (50, 50, 450, 350, wallImage),
-        new Obstacle (50, 50, 450, 400, wallImage),
-        new Obstacle (50, 50, 450, 450, wallImage),
+      new Obstacle (50, 50, 0, 0, wallImage),
+      new Obstacle (50, 50, 50, 0, wallImage),
+      new Obstacle (50, 50, 100, 0, wallImage),
+      new Obstacle (50, 50, 150, 0, wallImage),
+      new Obstacle (50, 50, 200, 0, wallImage),
+      new Obstacle (50, 50, 250, 0, wallImage),
+      new Obstacle (50, 50, 300, 0, wallImage),
+      new Obstacle (50, 50, 350, 0, wallImage),
+      new Obstacle (50, 50, 400, 0, wallImage),
+      new Obstacle (50, 50, 450, 0, wallImage),
+      new Obstacle (50, 50, 0, 50, wallImage),
+      new Obstacle (50, 50, 0, 100, wallImage),
+      new Obstacle (50, 50, 0, 150, wallImage),
+      new Obstacle (50, 50, 0, 200, wallImage),
+      new Obstacle (50, 50, 0, 250, wallImage),
+      new Obstacle (50, 50, 0, 300, wallImage),
+      new Obstacle (50, 50, 0, 350, wallImage),
+      new Obstacle (50, 50, 0, 400, wallImage),
+      new Obstacle (50, 50, 0, 450, wallImage),
+      new Obstacle (50, 50, 50, 450, wallImage),
+      new Obstacle (50, 50, 100, 450, wallImage),
+      new Obstacle (50, 50, 150, 450, wallImage),
+      new Obstacle (50, 50, 200, 450, wallImage),
+      new Obstacle (50, 50, 250, 450, wallImage),
+      new Obstacle (50, 50, 300, 450, wallImage),
+      new Obstacle (50, 50, 350, 450, wallImage),
+      new Obstacle (50, 50, 400, 450, wallImage),
+      new Obstacle (50, 50, 450, 450, wallImage),
+      new Obstacle (50, 50, 450, 50, wallImage),
+      new Obstacle (50, 50, 450, 100, wallImage),
+      new Obstacle (50, 50, 450, 150, wallImage),
+      new Obstacle (50, 50, 450, 200, wallImage),
+      new Obstacle (50, 50, 450, 250, wallImage),
+      new Obstacle (50, 50, 450, 300, wallImage),
+      new Obstacle (50, 50, 450, 350, wallImage),
+      new Obstacle (50, 50, 450, 400, wallImage),
+      new Obstacle (50, 50, 450, 450, wallImage),
 //Interior Walls
 new Obstacle (50, 50, 50, 300, wallImage),
 new Obstacle (50, 50, 50, 350, wallImage),
@@ -267,14 +272,22 @@ new Obstacle (50, 50, 300, 200, wallImage),
 new Obstacle (50, 50, 300, 150, wallImage),
 new Obstacle (50, 50, 100, 100, wallImage),
 new Obstacle (50, 50, 100, 150, wallImage),
-      ];
-    
-    let potions = [
-           new Item (25, 25, 410, 165, '1', 2, itemImage),
-           new Item (25, 25, 410, 260, '2', 3, itemImage)
-      ];
+    ];
+  
+  potions = [
+         new Item (25, 25, 410, 165, '1', 2, itemImage),
+         new Item (25, 25, 410, 260, '2', 3, itemImage)
+    ];
+}
+
+levelOnePopulation();
 
 // Level 2 Variables
+
+
+
+
+
 
 // Level functions
 
@@ -287,7 +300,7 @@ function checkLevelWon() {
 function youWon() {
     	  ctx.clearRect(0,0,canvas.width, canvas.height);
         console.log("You won! Continue with the next level!");
-        
+
 }
 
 function checkLevelLose() {
@@ -295,11 +308,16 @@ function checkLevelLose() {
         youLost();
       }
 }
+let gameLoop
 
 function youLost() {
+  clearInterval (gameLoop) 
   ctx.clearRect(0,0,canvas.width, canvas.height)
   console.log("You lost!");
+  levelOnePopulation();
 }
+
+
 
 // Main game function
 
@@ -313,7 +331,7 @@ window.onload = function () {
 
 
 function startGame() {
-    setInterval(() => {
+    gameLoop = setInterval(() => {
         ctx.clearRect(0,0,canvas.width, canvas.height)
         wizard1.paint();
         console.log(`health: ${wizard1.health}, strength: ${wizard1.strength}`)
