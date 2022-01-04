@@ -2,8 +2,6 @@
 const canvas = document.querySelector(".canvas")
 const ctx = canvas.getContext("2d")
 
-let restartBtn = document.querySelector('#restart')
-
 //Images
 
 const playerImage = new Image();
@@ -14,6 +12,9 @@ itemImage.src = "./images/potion.png";
 
 const monImage = new Image();
 monImage.src = "./images/dragon.png"
+
+const mon2Image = new Image();
+mon2Image.src = "./images/bat.png"
 
 const wallImage = new Image();
 wallImage.src = "./images/wall.jpg"
@@ -198,8 +199,8 @@ class Item {
     const wizard1 = new Player (35, 35, 260, 410, 10, 3, 0, playerImage);
 
     let monsters = [
-        new Player (30, 30, 55, 55, 5, 2, '1', monImage),
-        new Player (30, 30, 180, 410, 5, 2, '2', monImage)
+        new Player (30, 30, 55, 55, 5, 2, '1', mon2Image),
+        new Player (30, 30, 180, 410, 5, 10, '2', monImage)
       ];
 
     const walls = [
@@ -273,6 +274,7 @@ new Obstacle (50, 50, 100, 150, wallImage),
            new Item (25, 25, 410, 260, '2', 3, itemImage)
       ];
 
+// Level 2 Variables
 
 // Level functions
 
@@ -283,7 +285,9 @@ function checkLevelWon() {
       }
 
 function youWon() {
-    	  ctx.clearRect(0,0,canvas.width, canvas.height)
+    	  ctx.clearRect(0,0,canvas.width, canvas.height);
+        console.log("You won! Continue with the next level!");
+        
 }
 
 function checkLevelLose() {
@@ -294,6 +298,7 @@ function checkLevelLose() {
 
 function youLost() {
   ctx.clearRect(0,0,canvas.width, canvas.height)
+  console.log("You lost!");
 }
 
 // Main game function
@@ -302,10 +307,8 @@ window.onload = function () {
     document.getElementById("start-button").onclick = function () {
       document.getElementById("start-button").disabled = true;
       startGame()};
-    document.getElementById("start-button").onclick = function () {
-      document.getElementById("start-button").disabled = true;
-      startGame();
-    }
+    document.getElementById("restart").onclick = function () {
+      startGame()};
   };
 
 
