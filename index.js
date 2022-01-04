@@ -175,7 +175,7 @@ class Player {
     }
 }
 
-    class Item {
+class Item {
         constructor(argW, argH, argX, argY, argID, argEffect, argImg) {
             this.w = argW;
             this.h = argH;
@@ -188,7 +188,7 @@ class Player {
     paint () {
         ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
         }
-   }
+}
 
 
 
@@ -199,7 +199,7 @@ class Player {
     let monsters = [
         new Player (30, 30, 55, 55, 5, 2, '1', monImage),
         new Player (30, 30, 180, 410, 5, 2, '2', monImage)
-        ]
+      ];
 
     const walls = [
 //Exterior Walls
@@ -265,14 +265,22 @@ new Obstacle (50, 50, 300, 200, wallImage),
 new Obstacle (50, 50, 300, 150, wallImage),
 new Obstacle (50, 50, 100, 100, wallImage),
 new Obstacle (50, 50, 100, 150, wallImage),
-       ];
+      ];
     
     let potions = [
            new Item (25, 25, 410, 165, '1', 2, itemImage),
            new Item (25, 25, 410, 260, '2', 3, itemImage)
-        ]
+      ];
 
+function checkLevelWon() {
+      if (monsters.length === 0) {
+        youWon();
+      }
+      }
 
+function youWon() {
+    	  ctx.clearRect(0,0,canvas.width, canvas.height)
+}
 
 // Main game function
 
@@ -297,8 +305,11 @@ function startGame() {
         })
         walls.forEach((wall) => {
             wall.paint();
-          });
+        });
+        checkLevelWon();
     }, 10)
+
+
     
     document.addEventListener('keydown', (e) => {
         switch (e.keyCode) {
