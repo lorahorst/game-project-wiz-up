@@ -2,6 +2,14 @@
 const canvas = document.querySelector(".canvas")
 const ctx = canvas.getContext("2d")
 
+/*canvas.addEventListener("mousemove", function(e) { 
+  var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height
+  var canvasX = Math.round(e.clientX - cRect.left);  // Subtract the 'left' of the canvas 
+  var canvasY = Math.round(e.clientY - cRect.top);   // from the X/Y positions to make  
+  ctx.clearRect(0, 0, canvas.width, canvas.height);  // (0,0) the top left of the canvas
+  ctx.fillText("X: "+canvasX+", Y: "+canvasY, 10, 20);
+});*/
+
 //Images
 
 const playerImage = new Image();
@@ -286,6 +294,7 @@ levelOnePopulation();
 
 // Level 2 Variables
 
+
 function levelTwoPopulation () {
   wizard1 = new Player (35, 35, 260, 410, 10, 3, 0, playerImage);
 
@@ -465,7 +474,16 @@ var interval = setInterval(function(){
   }
 }, 1000);
 
-
+var timeleft = 10;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+    document.getElementById("countdown").innerHTML = "Finished";
+  } else {
+    document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+  }
+  timeleft -= 1;
+}, 1000);
 
 
 
