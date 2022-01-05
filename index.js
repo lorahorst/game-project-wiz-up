@@ -473,7 +473,7 @@ var interval = setInterval(function(){
     alert("You're out of time!");
   }
 }, 1000);
-
+*/
 var timeleft = 10;
 var downloadTimer = setInterval(function(){
   if(timeleft <= 0){
@@ -485,7 +485,7 @@ var downloadTimer = setInterval(function(){
   timeleft -= 1;
 }, 1000);
 
-
+/*
 
 // grame elments from html
 const canvas = document.querySelector(".canvas");
