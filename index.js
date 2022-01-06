@@ -217,7 +217,7 @@ let wins = 0;
 
 function levelOnePopulation () {
   wizards = [wizard1 = new Player (35, 35, 260, 410, 10, 3, 0, playerImage)];
-  console.log(wizard1.x, wizard1.y)
+  
   monsters = [
       new Player (30, 30, 55, 55, 5, 2, '1', mon2Image),
       new Player (30, 30, 180, 410, 5, 10, '2', monImage)
@@ -399,17 +399,18 @@ function youWon() {
       clearInterval (gameLoop)
       clearInterval(downloadTimer)
     	ctx.clearRect(0,0,canvas.width, canvas.height);
-      ctx.drawImage(winImage, 0, 0, 500, 500)
-      console.log("You won! Continue with the next level!");
+      ctx.drawImage(winImage, 50, 50, 450, 450)
       wins++
       if (wins === 1){
         document.getElementById("continue").disabled = false;
+        document.getElementById("countdown").innerHTML = "You won! Continue with the next level!";
       } else {
         document.getElementById("continue").disabled = true;
       }
       if (wins === 2){ 
         document.getElementById("start-button").disabled = false;
-        document.getElementById("restart").disabled = false
+        document.getElementById("restart").disabled = true;
+        document.getElementById("countdown").innerHTML = "You won! You are now a master wizard!";
       }
       levelTwoPopulation();
 }
@@ -424,12 +425,13 @@ function youLost() {
       clearInterval (gameLoop)
       clearInterval(downloadTimer)
       ctx.clearRect(0,0,canvas.width, canvas.height)
-      console.log("You lost!");
       loseScreen();
 }
 
 function loseScreen () {
       ctx.drawImage(loseImage, 0, 0, 500, 500)
+      document.getElementById("countdown").innerHTML = "You lost! Try again!";
+      document.getElementById("restart").disabled = false;
 }
 
 // Main game function
@@ -439,9 +441,12 @@ window.onload = function () {
     document.getElementById("continue").disabled = true;
     document.getElementById("start-button").onclick = function () {
       document.getElementById("start-button").disabled = true;
+      document.getElementById("restart").disabled = true;
+      wins === 0;
       startGame()
       levelOnePopulation()};
     document.getElementById("restart").onclick = function () {
+      document.getElementById("restart").disabled = true;
       clearInterval(downloadTimer)
       clearInterval(gameLoop)
       if(wins === 0) {
