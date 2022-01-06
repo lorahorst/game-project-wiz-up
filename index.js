@@ -402,7 +402,15 @@ function youWon() {
       ctx.drawImage(winImage, 0, 0, 500, 500)
       console.log("You won! Continue with the next level!");
       wins++
-      document.getElementById("continue").disabled = false;
+      if (wins === 1){
+        document.getElementById("continue").disabled = false;
+      } else {
+        document.getElementById("continue").disabled = true;
+      }
+      if (wins === 2){ 
+        document.getElementById("start-button").disabled = false;
+        document.getElementById("restart").disabled = false
+      }
       levelTwoPopulation();
 }
 
