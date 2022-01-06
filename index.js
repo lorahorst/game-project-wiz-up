@@ -2,13 +2,9 @@
 const canvas = document.querySelector(".canvas")
 const ctx = canvas.getContext("2d")
 
-/*canvas.addEventListener("mousemove", function(e) { 
-  var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height
-  var canvasX = Math.round(e.clientX - cRect.left);  // Subtract the 'left' of the canvas 
-  var canvasY = Math.round(e.clientY - cRect.top);   // from the X/Y positions to make  
-  ctx.clearRect(0, 0, canvas.width, canvas.height);  // (0,0) the top left of the canvas
-  ctx.fillText("X: "+canvasX+", Y: "+canvasY, 10, 20);
-});*/
+// Audio
+
+let audio = new Audio("./Mystic.mp3")
 
 //Images
 
@@ -300,7 +296,7 @@ function levelTwoPopulation () {
   wizard1 = new Player (35, 35, 60, 410, 10, 3, 0, playerImage);
 
   monsters = [
-      new Player (30, 30, 55, 55, 5, 2, '1', mon2Image),
+      new Player (30, 30, 55, 105, 5, 2, '1', mon2Image),
       new Player (30, 30, 410, 60, 5, 10, '2', monImage)
     ];
 
@@ -378,7 +374,6 @@ new Obstacle (50, 50, 400, 250, wallImage),
     ];
 }
 
-levelTwoPopulation();
 
 // Level functions
 
@@ -446,7 +441,8 @@ function startGame() {
             wall.paint();
         });
         checkLevelWon();
-        checkLevelLose();    
+        checkLevelLose(); 
+        audio.play()
     }, 10)
     startTimer ();
 
@@ -484,21 +480,6 @@ function startGame() {
       });
 } 
 
-
-/*function startCountdown () {}
-
-var count = 15;
-var interval = setInterval(function(){
-  document.getElementById('count').innerHTML=count;
-  count--;
-  if (count === 0){
-    clearInterval(interval);
-    document.getElementById('count').innerHTML='Done';
-    // or...
-    alert("You're out of time!");
-  }
-}, 1000);
-*/
 
 
 /*
