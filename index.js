@@ -390,7 +390,7 @@ new Obstacle (50, 50, 400, 250, wallImage),
 let gameLoop
 
 function checkLevelWon() {
-      if (monsters.length === 0) {
+      if (monsters.length === 0 && wizard1.health >=1) {
         youWon();
       }
       }
@@ -415,7 +415,7 @@ function youWon() {
 }
 
 function checkLevelLose() {
-      if (wizard1.health === 0) {
+      if (wizard1.health <= 0) {
         youLost();
       }
 }
@@ -476,8 +476,8 @@ function startGame() {
         walls.forEach((wall) => {
             wall.paint();
         });
-        checkLevelWon();
         checkLevelLose(); 
+        checkLevelWon();
         audio.play()
     }, 10)
 
