@@ -439,6 +439,7 @@ function loseScreen () {
 window.onload = function () {
     ctx.drawImage(playerImage, 0, 0, 500, 500)
     document.getElementById("continue").disabled = true;
+    document.getElementById("restart").disabled = true;
     document.getElementById("start-button").onclick = function () {
       document.getElementById("start-button").disabled = true;
       document.getElementById("restart").disabled = true;
