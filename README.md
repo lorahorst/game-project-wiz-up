@@ -37,6 +37,31 @@ Monsters can be defeated or will defeat the player.
 Data Structure
 index.js
 
+class obstacle {}
+paint ()
+
+class player {}
+checkcollision(wall)
+checkfight(opponent)
+checkitem(item)
+moveUp ()
+moveDown ()
+moveLeft ()
+moveRight ()
+
+class item {}
+
+levelOnePopulation ()
+levelTwoPopulation ()
+
+checkLevelWon()
+youWon()
+checkLevelLose()
+youLost()
+loseScreen ()
+
+startGame()
+startTimer ()
 
 
 Definition of the different states and their transition (transition functions)
@@ -45,7 +70,10 @@ gameScreen
 gameOverScreen
 
 
-Task
+Tasks
+
+Bug Fixing
+Knowledge Pic Insert (Monster Stats so that the player's know it)
 
 
 Links
