@@ -10,6 +10,8 @@ body {
   
 h1 {
     font-size: 80px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
 #mainContainer {
@@ -17,4 +19,32 @@ h1 {
   flex-direction: row;
   align-items: flex-start
   
+  }
+
+  ul {
+    padding: 20px;
+  }
+
+  div {
+    padding: 20px;
+  }
+
+  button {
+    padding: 10px;
+    margin: 10px;
+  }
+
+  #countdown {
+   font-size: 30px;
+   font-weight: bold;
+  }
+
+  #health {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  #strength {
+    font-size: 30px;
+    font-weight: bold;
   }
