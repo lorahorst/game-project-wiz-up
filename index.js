@@ -15,13 +15,16 @@ const itemImage = new Image();
 itemImage.src = "./images/potion.png";
 
 const monImage = new Image();
-monImage.src = "./images/dragon.png"
+monImage.src = "./images/dragon.png";
 
 const mon2Image = new Image();
-mon2Image.src = "./images/bat.png"
+mon2Image.src = "./images/bat.png";
 
 const wallImage = new Image();
-wallImage.src = "./images/wall.jpg"
+wallImage.src = "./images/wall.jpg";
+
+const loseImage = new Image ();
+loseImage.src = "./images/heart.png";
 
 
 // Classes
@@ -404,8 +407,12 @@ function youLost() {
       clearInterval (gameLoop) 
       ctx.clearRect(0,0,canvas.width, canvas.height)
       console.log("You lost!");
+      loseScreen();
 }
 
+function loseScreen () {
+      ctx.drawImage(loseImage, 0, 0, 500, 500)
+}
 
 // Main game function
 
@@ -446,20 +453,20 @@ function startGame() {
     }, 10)
     startTimer ();
 
-  var timeleft = 30;
-  function startTimer () {
-    var downloadTimer = setInterval(function(){
-      if(timeleft <= 0){
-     clearInterval(downloadTimer);
-     document.getElementById("countdown").innerHTML = "Time is up! You lost!";
-     youLost();
-   } else {
-     document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
-   }
-   timeleft -= 1;
- }, 1000);
-    
-  }
+    var timeleft = 30;
+    function startTimer () {
+      var downloadTimer = setInterval(function(){
+        if(timeleft <= 0){
+       clearInterval(downloadTimer);
+       document.getElementById("countdown").innerHTML = "Time is up! You lost!";
+       youLost();
+     } else {
+       document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+     }
+     timeleft -= 1;
+    }, 1000);
+      
+    }
   
     
     document.addEventListener('keydown', (e) => {
