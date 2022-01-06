@@ -26,6 +26,9 @@ wallImage.src = "./images/wall.jpg";
 const loseImage = new Image ();
 loseImage.src = "./images/heart.png";
 
+const winImage = new Image ();
+winImage.src = "./images/win.png"
+
 
 // Classes
 
@@ -391,6 +394,7 @@ function checkLevelWon() {
 function youWon() {
       clearInterval (gameLoop) 
     	ctx.clearRect(0,0,canvas.width, canvas.height);
+      ctx.drawImage(winImage, 0, 0, 500, 500)
       console.log("You won! Continue with the next level!");
       wins++
       document.getElementById("continue").disabled = false;
@@ -417,6 +421,7 @@ function loseScreen () {
 // Main game function
 
 window.onload = function () {
+    ctx.drawImage(playerImage, 0, 0, 500, 500)
     document.getElementById("continue").disabled = true;
     document.getElementById("start-button").onclick = function () {
       document.getElementById("start-button").disabled = true;
