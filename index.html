@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css"/>
   <title> Wiz-up! </title>
 </head>
 <body>
@@ -12,8 +13,16 @@
   <p> Move through the dungeon and defeat the monsters in it before the time is up. 
     But beware, some might be too strong for your current state. 
     Potions and wands will be helpful in your endeavour as well as having your wits with you.
+    <div id = "mainContainer">
+<ul>
+  Instructions:
+  <li> Move up: w </li>
+  <li>Move down: s </li>
+  <li>Move left: a </li>
+  <li>Move right d </li>
+</ul>
+   
   </p>
-
   <button id="start-button">Start Game</button>
   <button id = "restart" >Restart</button>
   <button id="continue" > Continue </button>
@@ -23,7 +32,8 @@
   <div class="container"></div>
   <canvas class="canvas" width="500" height="500"></canvas>
 
-  
+</div>
+
   <script src="./index.js"></script>
 </body>
 </html>
