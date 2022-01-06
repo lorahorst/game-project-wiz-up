@@ -424,6 +424,8 @@ window.onload = function () {
 function startGame() {
     gameLoop = setInterval(() => {
         ctx.clearRect(0,0,canvas.width, canvas.height)
+        document.getElementById("health").innerHTML = wizard1.health;
+        document.getElementById("strength").innerHTML = wizard1.strength;
         wizard1.paint();
         console.log(`health: ${wizard1.health}, strength: ${wizard1.strength}`)
         monsters.forEach((monster) => {
@@ -440,7 +442,7 @@ function startGame() {
     }, 10)
     startTimer ();
 
-  var timeleft = 10;
+  var timeleft = 30;
   function startTimer () {
     var downloadTimer = setInterval(function(){
       if(timeleft <= 0){
@@ -452,6 +454,7 @@ function startGame() {
    }
    timeleft -= 1;
  }, 1000);
+    
   }
   
     
