@@ -436,10 +436,23 @@ function startGame() {
             wall.paint();
         });
         checkLevelWon();
-        checkLevelLose();
+        checkLevelLose();    
     }, 10)
+    startTimer ();
 
-
+  var timeleft = 10;
+  function startTimer () {
+    var downloadTimer = setInterval(function(){
+      if(timeleft <= 0){
+     clearInterval(downloadTimer);
+     document.getElementById("countdown").innerHTML = "Finished";
+   } else {
+     document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+   }
+   timeleft -= 1;
+ }, 1000);
+  }
+  
     
     document.addEventListener('keydown', (e) => {
         switch (e.keyCode) {
@@ -474,16 +487,7 @@ var interval = setInterval(function(){
   }
 }, 1000);
 */
-var timeleft = 10;
-var downloadTimer = setInterval(function(){
-  if(timeleft <= 0){
-    clearInterval(downloadTimer);
-    document.getElementById("countdown").innerHTML = "Finished";
-  } else {
-    document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
-  }
-  timeleft -= 1;
-}, 1000);
+
 
 /*
 
