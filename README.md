@@ -53,5 +53,8 @@ Links
 Git
 https://github.com/lorahorst/game-project-wiz-up
 
+https://lorahorst.github.io/game-project-wiz-up/
+
+
 Slides
 https://docs.google.com/presentation/d/14YxKPDSkT-vBnCfID4nUPSJjKbrxBiwYYq-GYF1mc8A/edit?usp=sharing
