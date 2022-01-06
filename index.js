@@ -436,7 +436,11 @@ window.onload = function () {
     document.getElementById("restart").onclick = function () {
       clearInterval(downloadTimer)
       clearInterval(gameLoop)
-      ;
+      if(wins === 0) {
+        levelOnePopulation()
+      } else {
+        levelTwoPopulation()
+      }
       startGame()};
     document.getElementById("continue").onclick = function () {
       document.getElementById("continue").disabled = true
