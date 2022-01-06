@@ -216,7 +216,7 @@ let walls
 let wins = 0;
 
 function levelOnePopulation () {
-  wizard1 = new Player (35, 35, 260, 410, 10, 3, 0, playerImage);
+  wizards = [wizard1 = new Player (35, 35, 260, 410, 10, 3, 0, playerImage)];
   console.log(wizard1.x, wizard1.y)
   monsters = [
       new Player (30, 30, 55, 55, 5, 2, '1', mon2Image),
@@ -302,7 +302,8 @@ new Obstacle (50, 50, 100, 150, wallImage),
 
 
 function levelTwoPopulation () {
-  wizard1 = new Player (35, 35, 60, 410, 10, 3, 0, playerImage);
+  wizards = [wizard1 = new Player (35, 35, 60, 410, 10, 3, 0, playerImage)
+    ];
 
   monsters = [
       new Player (30, 30, 55, 105, 5, 2, '1', mon2Image),
@@ -395,7 +396,8 @@ function checkLevelWon() {
       }
 
 function youWon() {
-      clearInterval (gameLoop) 
+      clearInterval (gameLoop)
+      clearInterval(downloadTimer)
     	ctx.clearRect(0,0,canvas.width, canvas.height);
       ctx.drawImage(winImage, 0, 0, 500, 500)
       console.log("You won! Continue with the next level!");
@@ -411,7 +413,8 @@ function checkLevelLose() {
 }
 
 function youLost() {
-      clearInterval (gameLoop) 
+      clearInterval (gameLoop)
+      clearInterval(downloadTimer)
       ctx.clearRect(0,0,canvas.width, canvas.height)
       console.log("You lost!");
       loseScreen();
@@ -433,9 +436,10 @@ window.onload = function () {
     document.getElementById("restart").onclick = function () {
       clearInterval(downloadTimer)
       clearInterval(gameLoop)
-      levelOnePopulation();
+      ;
       startGame()};
     document.getElementById("continue").onclick = function () {
+      document.getElementById("continue").disabled = true
       clearInterval(downloadTimer)
       levelTwoPopulation();
       startGame();
@@ -448,8 +452,9 @@ function startGame() {
         ctx.clearRect(0,0,canvas.width, canvas.height)
         document.getElementById("health").innerHTML = "Health " + wizard1.health;
         document.getElementById("strength").innerHTML = "Strength " + wizard1.strength;
-        wizard1.paint();
-        console.log(`health: ${wizard1.health}, strength: ${wizard1.strength}`)
+        wizards.forEach((wizard) => {
+          wizard.paint();
+        })
         monsters.forEach((monster) => {
             monster.paint();
         })
@@ -463,9 +468,10 @@ function startGame() {
         checkLevelLose(); 
         audio.play()
     }, 10)
+
     startTimer ();
 
-    var timeleft = 30;
+    let timeleft = 30;
     function startTimer () {
       downloadTimer = setInterval(function(){
         if(timeleft <= 0){
@@ -476,30 +482,26 @@ function startGame() {
        document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
      }
      timeleft -= 1;
-    }, 1000);
-      
+    }, 1000); 
     }
-  
-    
-    document.addEventListener('keydown', (e) => {
-        switch (e.keyCode) {
-          case 87: // w
-            wizard1.moveUp();
-            break;
-          case 83: // s
-            wizard1.moveDown();
-            break;
-          case 65: // a
-            wizard1.moveLeft();
-            break;
-          case 68: // d
-            wizard1.moveRight();
-            break;
-        }
-      });
 } 
 
-
+document.addEventListener('keydown', (e) => {
+  switch (e.keyCode) {
+    case 87: // w
+      wizard1.moveUp();
+      break;
+    case 83: // s
+      wizard1.moveDown();
+      break;
+    case 65: // a
+      wizard1.moveLeft();
+      break;
+    case 68: // d
+      wizard1.moveRight();
+      break;
+  }
+});
 
 /*
 
