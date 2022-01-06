@@ -445,7 +445,8 @@ function startGame() {
     var downloadTimer = setInterval(function(){
       if(timeleft <= 0){
      clearInterval(downloadTimer);
-     document.getElementById("countdown").innerHTML = "Finished";
+     document.getElementById("countdown").innerHTML = "Time is up! You lost!";
+     youLost();
    } else {
      document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
    }
