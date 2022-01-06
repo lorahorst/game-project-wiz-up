@@ -8,6 +8,8 @@ let audio = new Audio("./Mystic.mp3")
 
 //Images
 
+let downloadTimer;
+
 const playerImage = new Image();
 playerImage.src = "./images/player.png";
 
@@ -88,6 +90,7 @@ class Player {
 
    moveUp () {
        this.y = this.y -= 5;
+       console.log("inside class",this.y)
        walls.forEach((wall) => {
            if (this.checkcollision(wall)) {
                this.y += 5;
@@ -214,7 +217,7 @@ let wins = 0;
 
 function levelOnePopulation () {
   wizard1 = new Player (35, 35, 260, 410, 10, 3, 0, playerImage);
-
+  console.log(wizard1.x, wizard1.y)
   monsters = [
       new Player (30, 30, 55, 55, 5, 2, '1', mon2Image),
       new Player (30, 30, 180, 410, 5, 10, '2', monImage)
@@ -293,7 +296,7 @@ new Obstacle (50, 50, 100, 150, wallImage),
     ];
 }
 
-levelOnePopulation();
+//levelOnePopulation();
 
 // Level 2 Variables
 
@@ -425,11 +428,15 @@ window.onload = function () {
     document.getElementById("continue").disabled = true;
     document.getElementById("start-button").onclick = function () {
       document.getElementById("start-button").disabled = true;
-      startGame()};
+      startGame()
+      levelOnePopulation()};
     document.getElementById("restart").onclick = function () {
+      clearInterval(downloadTimer)
+      clearInterval(gameLoop)
       levelOnePopulation();
       startGame()};
     document.getElementById("continue").onclick = function () {
+      clearInterval(downloadTimer)
       levelTwoPopulation();
       startGame();
     }
@@ -460,7 +467,7 @@ function startGame() {
 
     var timeleft = 30;
     function startTimer () {
-      var downloadTimer = setInterval(function(){
+      downloadTimer = setInterval(function(){
         if(timeleft <= 0){
        clearInterval(downloadTimer);
        document.getElementById("countdown").innerHTML = "Time is up! You lost!";
