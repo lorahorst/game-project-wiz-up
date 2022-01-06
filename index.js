@@ -282,6 +282,7 @@ new Obstacle (50, 50, 300, 200, wallImage),
 new Obstacle (50, 50, 300, 150, wallImage),
 new Obstacle (50, 50, 100, 100, wallImage),
 new Obstacle (50, 50, 100, 150, wallImage),
+
     ];
   
   potions = [
@@ -296,11 +297,11 @@ levelOnePopulation();
 
 
 function levelTwoPopulation () {
-  wizard1 = new Player (35, 35, 260, 410, 10, 3, 0, playerImage);
+  wizard1 = new Player (35, 35, 60, 410, 10, 3, 0, playerImage);
 
   monsters = [
       new Player (30, 30, 55, 55, 5, 2, '1', mon2Image),
-      new Player (30, 30, 180, 410, 5, 10, '2', monImage)
+      new Player (30, 30, 410, 60, 5, 10, '2', monImage)
     ];
 
   walls = [
@@ -343,35 +344,37 @@ function levelTwoPopulation () {
       new Obstacle (50, 50, 450, 400, wallImage),
       new Obstacle (50, 50, 450, 450, wallImage),
 //Interior Walls
-new Obstacle (50, 50, 50, 300, wallImage),
-new Obstacle (50, 50, 50, 350, wallImage),
-new Obstacle (50, 50, 50, 400, wallImage),
-new Obstacle (50, 50, 50, 450, wallImage),
-new Obstacle (50, 50, 400, 400, wallImage),
-new Obstacle (50, 50, 400, 200, wallImage),
-new Obstacle (50, 50, 400, 100, wallImage),
-new Obstacle (50, 50, 400, 50, wallImage),
-new Obstacle (50, 50, 350, 50, wallImage),
-new Obstacle (50, 50, 250, 50, wallImage),
-new Obstacle (50, 50, 200, 250, wallImage),
-new Obstacle (50, 50, 200, 200, wallImage),
-new Obstacle (50, 50, 200, 300, wallImage),
-new Obstacle (50, 50, 200, 150, wallImage),
-new Obstacle (50, 50, 200, 350, wallImage),
-new Obstacle (50, 50, 150, 350, wallImage),
-new Obstacle (50, 50, 150, 250, wallImage),
-new Obstacle (50, 50, 300, 350, wallImage),
-new Obstacle (50, 50, 300, 300, wallImage),
-new Obstacle (50, 50, 350, 300, wallImage),
-new Obstacle (50, 50, 300, 200, wallImage),
-new Obstacle (50, 50, 300, 150, wallImage),
-new Obstacle (50, 50, 100, 100, wallImage),
+new Obstacle (50, 50, 100, 50, wallImage),
 new Obstacle (50, 50, 100, 150, wallImage),
+new Obstacle (50, 50, 100, 200, wallImage),
+new Obstacle (50, 50, 100, 300, wallImage),
+new Obstacle (50, 50, 100, 350, wallImage),
+
+new Obstacle (50, 50, 200, 100, wallImage),
+new Obstacle (50, 50, 200, 150, wallImage),
+new Obstacle (50, 50, 200, 250, wallImage),
+
+new Obstacle (50, 50, 250, 50, wallImage),
+new Obstacle (50, 50, 250, 100, wallImage),
+new Obstacle (50, 50, 250, 250, wallImage),
+new Obstacle (50, 50, 250, 350, wallImage),
+new Obstacle (50, 50, 250, 350, wallImage),
+
+new Obstacle (50, 50, 300, 100, wallImage),
+
+new Obstacle (50, 50, 350, 100, wallImage),
+new Obstacle (50, 50, 350, 200, wallImage),
+new Obstacle (50, 50, 350, 250, wallImage),
+new Obstacle (50, 50, 350, 350, wallImage),
+new Obstacle (50, 50, 350, 400, wallImage),
+
+new Obstacle (50, 50, 400, 250, wallImage),
     ];
   
   potions = [
-         new Item (25, 25, 410, 165, '1', 2, itemImage),
-         new Item (25, 25, 410, 260, '2', 3, itemImage)
+         new Item (25, 25, 60, 60, '1', 2, itemImage),
+         new Item (25, 25, 410, 410, '2', 3, itemImage),
+         new Item (25, 25, 260, 160, '3', 3, itemImage),
     ];
 }
 
@@ -392,7 +395,7 @@ function youWon() {
     	ctx.clearRect(0,0,canvas.width, canvas.height);
       console.log("You won! Continue with the next level!");
       wins++
-      console.log(wins)
+      document.getElementById("continue").disabled = false;
       levelTwoPopulation();
 }
 
@@ -412,20 +415,25 @@ function youLost() {
 // Main game function
 
 window.onload = function () {
+    document.getElementById("continue").disabled = true;
     document.getElementById("start-button").onclick = function () {
       document.getElementById("start-button").disabled = true;
       startGame()};
     document.getElementById("restart").onclick = function () {
       levelOnePopulation();
       startGame()};
+    document.getElementById("continue").onclick = function () {
+      levelTwoPopulation();
+      startGame();
+    }
   };
 
 
 function startGame() {
     gameLoop = setInterval(() => {
         ctx.clearRect(0,0,canvas.width, canvas.height)
-        document.getElementById("health").innerHTML = wizard1.health;
-        document.getElementById("strength").innerHTML = wizard1.strength;
+        document.getElementById("health").innerHTML = "Health " + wizard1.health;
+        document.getElementById("strength").innerHTML = "Strength " + wizard1.strength;
         wizard1.paint();
         console.log(`health: ${wizard1.health}, strength: ${wizard1.strength}`)
         monsters.forEach((monster) => {
