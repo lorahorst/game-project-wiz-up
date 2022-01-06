@@ -520,23 +520,3 @@ document.addEventListener('keydown', (e) => {
       break;
   }
 });
-
-/*
-
-// game initial value
-let name = "";
-let timer = 0;
-let score = 0;
-
-// function to reset the initial value of the game
-function resetGame() {
-  timer = 0;
-  score = 0;
-  gameScreen = "start";
-}
-
-// play again click logic
-playAgainBtn.onclick = () => {
-  resetGame();
-};
-*/
